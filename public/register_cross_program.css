@@ -37,7 +37,8 @@ body {
 .quarter-width,
 .third-width,
 .half-width {
-    max-width: 100%; /* Ensures containers don't exceed their intended width */
+    max-width: 100%;
+    /* Ensures containers don't exceed their intended width */
 }
 
 /* Specific layout adjustments for rows with multiple fields */
@@ -45,8 +46,8 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    white-space: nowrap;   
-    flex-wrap: nowrap; 
+    white-space: nowrap;
+    flex-wrap: nowrap;
     width: 100%;
 }
 
@@ -89,6 +90,7 @@ body {
 .form-group .small-width:not(:last-child) {
     margin-right: 10px;
 }
+
 .form-group .icon-input {
     position: relative;
 }
@@ -104,8 +106,9 @@ body {
     transform: translateY(-50%);
     color: #888;
 }
+
 .form-group .empty-column {
-    width: 5%;
+    width: 10%;
     display: inline-block;
 }
 
@@ -118,7 +121,7 @@ select:invalid {
 }
 
 .large-label {
-    font-size:20px; 
+    font-size: 20px;
 }
 
 .buttons {
@@ -133,7 +136,7 @@ select:invalid {
     border-radius: 15px;
     cursor: pointer;
     margin: 0 10px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .buttons .submit {
