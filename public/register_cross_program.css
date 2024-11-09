@@ -91,7 +91,8 @@ body {
 .quarter-width,
 .third-width,
 .half-width {
-    max-width: 100%; /* Ensures containers don't exceed their intended width */
+    max-width: 100%;
+    /* Ensures containers don't exceed their intended width */
 }
 
 /* Specific layout adjustments for rows with multiple fields */
@@ -99,19 +100,11 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    white-space: nowrap;   
-    flex-wrap: nowrap; 
+    white-space: nowrap;
+    flex-wrap: nowrap;
     width: 100%;
 }
 
-.form-group.reason {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    white-space: nowrap;   
-    flex-wrap: nowrap; 
-    width: 100%;
-}
 .form-group select {
     width: 100%;
 }
@@ -119,30 +112,14 @@ body {
 .form-group textarea {
     height: 100px;
 }
-.form-group .fifty-width {
-    width: calc(50% - 10px);
-    display: inline-block;
-}
-.form-group .sixty-width {
-    width: calc(60% - 10px);
-    display: inline-block;
-}
+
 .form-group .half-width {
-    width: calc(43.15% - 10px);
-    display: inline-block;
-}
-.form-group .one-width {
-    width: calc(100% - 10px);
+    width: calc(50% - 10px);
     display: inline-block;
 }
 
 .form-group .third-width {
     width: calc(33.33% - 10px);
-    display: inline-block;
-}
-
-.form-group .two-width {
-    width: calc(11% - 10px);
     display: inline-block;
 }
 
@@ -167,6 +144,7 @@ body {
 .form-group .small-width:not(:last-child) {
     margin-right: 10px;
 }
+
 .form-group .icon-input {
     position: relative;
 }
@@ -177,13 +155,14 @@ body {
 
 .form-group .icon-input .fa {
     position: absolute;
-    left: 0px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: #888;
 }
+
 .form-group .empty-column {
-    width: 5%;
+    width: 10%;
     display: inline-block;
 }
 
@@ -196,11 +175,11 @@ select:invalid {
 }
 
 .large-label {
-    font-size:20px; 
+    font-size: 20px;
 }
 
 .buttons {
-    text-align: right;
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -211,7 +190,7 @@ select:invalid {
     border-radius: 15px;
     cursor: pointer;
     margin: 0 10px;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .buttons .submit {
