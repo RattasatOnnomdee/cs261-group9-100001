@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../public/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>หน้าหลัก</title>
+
 </head>
 <body>
     <div class="nav_box">
@@ -25,6 +26,67 @@
                 </div>
             </div>
         </nav>
+    </div>
+
+    <div class="tracker">
+        <div class="traker-content">
+            <div class="approve-tracker">
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <p>อนุมัติ / Approve</p>
+                    <i class='bx bxs-circle approve-status-color'></i>
+                </div>
+
+                <div class="approve-status-container">
+                    <p class="approve-no-data"></p>
+                    <div class="approve-status">
+                        <p>คำร้องจดทะเบียนล่าช้า</p>
+                        <button class="approve-btn">อนุมัติ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pending-tracker">
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <p>รอดำเนินการ / Pending</p>
+                    <i class='bx bxs-circle pending-status-color'></i>
+                </div>
+
+                <div class="pending-status-container">
+                    <p class="pending-no-data"></p>
+                    <div class="pending-status">
+                        <p>คำร้องขอลาออก</p>
+                        <div class="pending-btns">
+                            <button class="edit-btn">แก้ไข</button>
+                            <button class="cancel-btn">ยกเลิก</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reject-tracker">
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <p>ถูกปฏิเสธ / Reject</p>
+                    <i class='bx bxs-circle reject-status-color'></i>
+                </div>
+
+                <div class="reject-status-container">
+                    <p class="reject-no-data"></p>
+                    <div class="reject-status">
+                        <p>คำร้องขอถอนรายวิชา</p>
+                        <button class="reject-btn">ถูกปฏิเสธ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="tracker">

@@ -59,7 +59,12 @@ body {
     text-decoration: none;
 }
 
-
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0 20px;
+}
 .container {
     max-width: 1500px;
     margin: 20px auto;
