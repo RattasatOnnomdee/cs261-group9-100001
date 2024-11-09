@@ -64,3 +64,158 @@ button.logout{
 .logo img{
     height: 150px;
 }
+
+.tracker{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.traker-content{
+    display: flex ;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.approve-tracker{
+    display: flex;
+    flex-direction: column;
+}
+
+.tracker-title{
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+    align-items: center;
+    border-bottom: 1px solid #000;
+}
+
+button.dropdown-icon{
+    border: none;
+    background-color: transparent;
+    font-size: var(--normalFont);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tracker-title p{
+    font-size: var(--normalFont);
+}
+
+.approve-status-color{
+    color: forestgreen;
+}
+
+.pending-status-color{
+    color: darkgray;
+}
+
+.reject-status-color{
+    color: crimson;
+}
+
+.approve-status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #F0F0F0;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    width: 70%;
+}
+
+.approve-status p{
+    font-size: var(--smallFont);
+}
+
+.approve-btn{
+    font-size: var(--smallFont);
+    width: 100px;
+    padding: 3px 6px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: none;
+    background-color: #B7DBB5;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+}
+
+.pending-status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #F0F0F0;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    width: 70%;
+}
+
+.pending-status p{
+    font-size: var(--smallFont);
+}
+
+.pending-btns .edit-btn{
+    font-size: var(--smallFont);
+    width: 100px;
+    padding: 3px 6px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: none;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pending-btns .cancel-btn{
+    font-size: var(--smallFont);
+    width: 100px;
+    padding: 3px 6px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: none;
+    background-color: #DBB5B5;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    cursor: pointer;
+}
+
+.reject-status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #F0F0F0;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    width: 70%;
+}
+
+.reject-status p{
+    font-size: var(--smallFont);
+}
+
+.reject-btn{
+    font-size: var(--smallFont);
+    width: 100px;
+    padding: 3px 6px;
+    border-radius: 15px;
+    font-weight: 600;
+    border: none;
+    background-color: #DBB5B5;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
+}
