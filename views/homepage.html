@@ -5,35 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/homepage.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Document</title>
+    <title>หน้าหลัก</title>
 </head>
 <body>
-    <div class="nav-bar">
+    <div class="nav_box">
         <div class="logo">
-            <img src="../public/Assets/Emblem_of_Thammasat_University.svg.png">
+            <img src="/public/Assets/Emblem_of_Thammasat_University.svg.png" alt="ThammasatLogo">
         </div>
-
-        <div class="nav-links">
-            <div class="links-logout">
-                <ul class="links">
-                    <li><a href="#">หน้าหลัก</a></li>
-                    <li><a href="#">สร้างคำร้อง</a></li>
-                    <li><a href="#">เเบบร่าง</a></li>
-                </ul>
-    
-                <button class="logout">Logout</button>
+        <nav class="navBar">
+            <div class="content">
+                <div class="navi">
+                    <a href="/views/homepage.html">หน้าหลัก</a>
+                    <a href="/views/createForm.html">สร้างคำร้อง</a>
+                    <a href="/views/Draft.html">แบบร่าง</a>
+                </div>
+  
+                <div class="Logout">
+                    <a href="/views/index.html">Logout</a>
+                </div>
             </div>
-            <div class="line"></div>
-        </div>
+        </nav>
     </div>
 
     <div class="tracker">
         <div class="traker-content">
             <div class="approve-tracker">
-                <div class="title">
-                    <i class='bx bx-menu'></i>
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
                     <p>อนุมัติ / Approve</p>
-                    <i class='bx bxs-circle'></i>
+                    <i class='bx bxs-circle approve-status-color'></i>
                 </div>
 
                 <div class="approve-status-container">
@@ -46,15 +48,17 @@
             </div>
 
             <div class="pending-tracker">
-                <div class="title">
-                    <i class='bx bx-menu'></i>
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
                     <p>รอดำเนินการ / Pending</p>
-                    <i class='bx bxs-circle'></i>
+                    <i class='bx bxs-circle pending-status-color'></i>
                 </div>
 
                 <div class="pending-status-container">
                     <p class="pending-no-data"></p>
-                    <div class="approve-status">
+                    <div class="pending-status">
                         <p>คำร้องขอลาออก</p>
                         <div class="pending-btns">
                             <button class="edit-btn">แก้ไข</button>
@@ -65,10 +69,12 @@
             </div>
 
             <div class="reject-tracker">
-                <div class="title">
-                    <i class='bx bx-menu'></i>
+                <div class="tracker-title">
+                    <button class="dropdown-icon">
+                        <i class='bx bx-menu'></i>
+                    </button>
                     <p>ถูกปฏิเสธ / Reject</p>
-                    <i class='bx bxs-circle'></i>
+                    <i class='bx bxs-circle reject-status-color'></i>
                 </div>
 
                 <div class="reject-status-container">
