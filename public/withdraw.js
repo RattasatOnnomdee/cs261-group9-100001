@@ -1,9 +1,9 @@
 const saveDraft = document.getElementById("save-draft")
 const submit = document.getElementById("submit")
 const cancel = document.getElementById("cancel")
-const form = document.getElementById("resignationForm")
+const form = document.getElementById("withdrawForm")
 
-saveDraft.addEventListener("click" , async () => {
+saveDraft.addEventListener("click" ,async () => {
     const draftForm = {
         title: document.getElementById('title').value,
         first_name: document.getElementById('first_name').value,
@@ -25,8 +25,14 @@ saveDraft.addEventListener("click" , async () => {
         section: document.getElementById('section').value,
         reason: document.getElementById('reason').value
     }
+    
     const userId = localStorage.getItem('userId');
     const jsonForm = JSON.stringify(draftForm)
+    
+    if (!userId) {
+        alert('กรุณาล็อกอินก่อน');
+        return;
+    }
     try {
         const response = await fetch(`http://localhost:8000/user/${userId}`, {
           method: 'POST',
@@ -46,8 +52,7 @@ saveDraft.addEventListener("click" , async () => {
         console.error('Error:', error);
         alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
       }
-
-    sessionStorage.setItem("buttonResign", "true");
+    sessionStorage.setItem("buttonWithDraw", "true");
     window.location.href = "Draft.html"
 })
 
@@ -78,6 +83,10 @@ submit.addEventListener("click",async ()=>{
     const jsonData = JSON.stringify(submitData)
     // const dateSubmit = new Date();
     const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('กรุณาล็อกอินก่อน');
+        return;
+    }
 
     try {
         const response = await fetch(`http://localhost:8000/user/:${userId}` , {

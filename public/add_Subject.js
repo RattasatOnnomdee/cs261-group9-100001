@@ -1,7 +1,7 @@
 const saveDraft = document.getElementById("save-draft")
 const submit = document.getElementById("submit")
 const cancel = document.getElementById("cancel")
-const form = document.getElementById("resignationForm")
+const form = document.getElementById("add-subject-form")
 
 saveDraft.addEventListener("click" , async () => {
     const draftForm = {
@@ -47,7 +47,7 @@ saveDraft.addEventListener("click" , async () => {
         alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
       }
 
-    sessionStorage.setItem("buttonResign", "true");
+    sessionStorage.setItem("buttonAddSubject", "true");
     window.location.href = "Draft.html"
 })
 

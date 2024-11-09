@@ -30,7 +30,7 @@
 
   <div class="container">
     <div class="header">เรื่อง จดทะเบียนวิชาข้ามหลักสูตร</div>
-    <form action="/submit-form" method="POST">
+    <form action="/submit-form" method="POST" id="register-cross-program-form">
       <div class="form-group">
         <div class="header">เรียน คณบดีคณะวิทยาศาสตร์และเทคโนโลยี</div>
         <div class="form-group special-row">
@@ -241,9 +241,9 @@
         </p>
       </div>
       <div class="buttons">
-        <button type="submit" class="submit">ส่ง</button>
-        <button type="button" class="save-draft">บันทึกแบบร่าง</button>
-        <button type="button" class="cancel">ยกเลิก</button>
+        <button type="submit" class="submit" id="submit">ส่ง</button>
+        <button type="button" class="save-draft" id="save-draft">บันทึกแบบร่าง</button>
+        <button type="button" class="cancel" id="cancel">ยกเลิก</button>
       </div>
     </form>
   </div>

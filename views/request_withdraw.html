@@ -31,7 +31,7 @@
     
     <div class="container">
       <div class="header">เรื่อง ขอถอนรายวิชา</div>
-      <form action="/submit-form" method="POST">
+      <form action="/submit-form" method="POST" id="withdrawForm">
         <div class="form-group">
           <div class="header">เรียน คณบดีคณะวิทยาศาสตร์และเทคโนโลยี</div>
           <label>
@@ -163,13 +163,13 @@
         <br>
         <br>
         <div class="buttons">
-          <button type="submit" class="submit">ส่ง</button>
-          <button type="button" class="save-draft">บันทึกแบบร่าง</button>
-          <button type="button" class="cancel">ยกเลิก</button>
+          <button type="submit" class="submit" id="submit">ส่ง</button>
+          <button type="button" class="save-draft" id="save-draft">บันทึกแบบร่าง</button>
+          <button type="button" class="cancel" id="cancel">ยกเลิก</button>
         </div>
       </form>
     </div>
 
-    <script src="/public/add_Subject_And_withdraw.js"></script>
+    <script src="/public/withdraw.js"></script>
   </body>
 </html>
