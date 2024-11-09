@@ -1,17 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Page</title>
     <link rel="stylesheet" href="/public/resignation_form.css" />
     <link
       rel="stylesheet"
+      href="../public/homepage.css"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
   </head>
   <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="../public/Assets/Emblem_of_Thammasat_University.svg.png" />
+      </div>
+
+      <div class="nav-links">
+        <div class="links-logout">
+          <ul class="links">
+            <li><a href="#">หน้าหลัก</a></li>
+            <li><a href="#">สร้างคำร้อง</a></li>
+            <li><a href="#">เเบบร่าง</a></li>
+          </ul>
+
+          <button class="logout">Logout</button>
+        </div>
+        <div class="line"></div>
+      </div>
+    </div>
     <div class="container">
       <div class="header">เรื่อง ขอลาออก</div>
-      <form action="/submit-form" method="POST">
+      <form id="resignationForm">
         <div class="form-group">
           <div class="header">เรียน คณบดีคณะวิทยาศาสตร์และเทคโนโลยี</div>
           <div class="form-group special-row">
@@ -27,8 +48,8 @@
             <div class="third-width">
               <input
                 type="text"
-                name="first_name"
-                id="first_name"
+                name="studentName"
+                id="studentName"
                 placeholder="ชื่อ"
                 required
               />
@@ -36,21 +57,22 @@
             <div class="third-width">
               <input
                 type="text"
-                name="last_name"
-                id="last_name"
+                name="studentLastName"
+                id="studentLastName"
                 placeholder="นามสกุล"
                 required
               />
             </div>
           </div>
         </div>
+
         <div class="form-group special-row">
           <label>เลขทะเบียน</label>
-          <div class="half-width    ">
+          <div class="half-width">
             <input
               type="text"
-              name="student_id"
-              id="student_id"
+              name="studentId"
+              id="studentId"
               placeholder="กรอกเลขทะเบียนนักศึกษา..."
               required
             />
@@ -95,8 +117,8 @@
           <div class="third-width">
             <input
               type="text"
-              name="sub_district"
-              id="sub_district"
+              name="subDistrict"
+              id="subDistrict"
               placeholder="เขต/อำเภอ"
               required
             />
@@ -119,8 +141,8 @@
               <i class="fa fa-phone"></i>
               <input
                 type="text"
-                name="phone"
-                id="phone"
+                name="contact"
+                id="contact"
                 placeholder="xxx xxx xxxx"
                 required
               />
@@ -135,8 +157,8 @@
               <i class="fa fa-phone"></i>
               <input
                 type="text"
-                name="guardian_phone"
-                id="guardian_phone"
+                name="parentContactNumber"
+                id="parentContactNumber"
                 placeholder="xxx xxx xxxx"
                 required
               />
@@ -159,15 +181,15 @@
           <label>ตั้งแต่ภาคการศึกษาที่</label>
           <div class="quarter-width">
             <input
-              name="pre_year"
-              id="pre_year"
+              name="sinceSemester"
+              id="sinceSemester"
               placeholder="ภาคการศึกษา"
               required
             />
           </div>
           <label>ภาคการศึกษาที่</label>
           <div class="small-width">
-            <select name="year" id="year" required>
+            <select name="semesterYear" id="semesterYear" required>
               <option value="" selected disabled hidden></option>
               <option value="2567">2567</option>
               <option value="2568">2568</option>
@@ -177,7 +199,7 @@
           </div>
           <label class="large-label">/</label>
           <div class="small-width">
-            <select name="term" id="term" required>
+            <select name="semesterTerm" id="semesterTerm" required>
               <option value="" selected disabled hidden></option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -190,8 +212,8 @@
           <div class="third-width">
             <input
               type="text"
-              name="course_code"
-              id="course_code"
+              name="courseId"
+              id="courseId"
               placeholder="รหัสวิชา"
               required
             />
@@ -199,8 +221,8 @@
           <div class="third-width">
             <input
               type="text"
-              name="course_name"
-              id="course_name"
+              name="courseName"
+              id="courseName"
               placeholder="ชื่อวิชา"
               required
             />
@@ -218,8 +240,8 @@
         <div class="form-group">
           <label>เหตุผลที่ยื่นคำร้องเนื่องจาก</label>
           <textarea
-            name="reason"
-            id="reason"
+            name="requestReason"
+            id="requestReason"
             placeholder="โปรดกรอกเหตุผล....."
             required
           ></textarea>
