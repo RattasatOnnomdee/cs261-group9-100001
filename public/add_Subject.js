@@ -87,6 +87,10 @@ submit.addEventListener("click",async ()=>{
             },
             body:jsonData
         })
+         if (!userId) {
+            alert('กรุณาล็อกอินก่อน');
+            return;
+        }
 
         const result = await response.json();
         if (result.message === "Insert success") {

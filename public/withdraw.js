@@ -29,10 +29,10 @@ saveDraft.addEventListener("click" ,async () => {
     const userId = localStorage.getItem('userId');
     const jsonForm = JSON.stringify(draftForm)
     
-    if (!userId) {
-        alert('กรุณาล็อกอินก่อน');
-        return;
-    }
+    // if (!userId) {
+    //     alert('กรุณาล็อกอินก่อน');
+    //     return;
+    // }
     try {
         const response = await fetch(`http://localhost:8000/user/${userId}`, {
           method: 'POST',

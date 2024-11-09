@@ -6,24 +6,24 @@ const form = document.getElementById("resignationForm")
 saveDraft.addEventListener("click" , async () => {
     const draftForm = {
         title: document.getElementById('title').value,
-        first_name: document.getElementById('first_name').value,
-        last_name: document.getElementById('last_name').value,
-        student_id: document.getElementById('student_id').value,
+        studentName: document.getElementById('studentName').value,
+        studentLastName: document.getElementById('studentLastName').value,
+        studentId: document.getElementById('studentId').value,
         semester: document.getElementById('semester').value,
         address: document.getElementById('address').value,
         district: document.getElementById('district').value,
-        sub_district: document.getElementById('sub_district').value,
+        subDistrict: document.getElementById('subDistrict').value,
         province: document.getElementById('province').value,
-        phone: document.getElementById('phone').value,
-        guardian_phone: document.getElementById('guardian_phone').value,
+        contact: document.getElementById('contact').value,
+        parentContactNumber: document.getElementById('parentContactNumber').value,
         advisor: document.getElementById('advisor').value,
         // pre_year: document.getElementById('pre_year').value,
-        year: document.getElementById('year').value,
-        term: document.getElementById('term').value,
-        course_code: document.getElementById('course_code').value,
-        course_name: document.getElementById('course_name').value,
+        semesterYear: document.getElementById('semesterYear').value,
+        semesterTerm: document.getElementById('semesterTerm').value,
+        courseId: document.getElementById('courseId').value,
+        courseName: document.getElementById('courseName').value,
         section: document.getElementById('section').value,
-        reason: document.getElementById('reason').value
+        requestReason: document.getElementById('requestReason').value
     }
     const userId = localStorage.getItem('userId');
     const jsonForm = JSON.stringify(draftForm)
@@ -35,7 +35,11 @@ saveDraft.addEventListener("click" , async () => {
           },
           body: jsonForm
         });
-        
+         if (!userId) {
+            alert('กรุณาล็อกอินก่อน');
+            return;
+         }
+
         const result = await response.json()
         if (result.message === "Draft saved successfully") {
             alert('บันทึกแบบร่างสำเร็จ');
