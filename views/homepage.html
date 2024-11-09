@@ -1,1 +1,85 @@
-<p>Hello World</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/homepage.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="../public/Assets/Emblem_of_Thammasat_University.svg.png">
+        </div>
+
+        <div class="nav-links">
+            <div class="links-logout">
+                <ul class="links">
+                    <li><a href="#">หน้าหลัก</a></li>
+                    <li><a href="#">สร้างคำร้อง</a></li>
+                    <li><a href="#">เเบบร่าง</a></li>
+                </ul>
+    
+                <button class="logout">Logout</button>
+            </div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="tracker">
+        <div class="traker-content">
+            <div class="approve-tracker">
+                <div class="title">
+                    <i class='bx bx-menu'></i>
+                    <p>อนุมัติ / Approve</p>
+                    <i class='bx bxs-circle'></i>
+                </div>
+
+                <div class="approve-status-container">
+                    <p class="approve-no-data"></p>
+                    <div class="approve-status">
+                        <p>คำร้องจดทะเบียนล่าช้า</p>
+                        <button class="approve-btn">อนุมัติ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pending-tracker">
+                <div class="title">
+                    <i class='bx bx-menu'></i>
+                    <p>รอดำเนินการ / Pending</p>
+                    <i class='bx bxs-circle'></i>
+                </div>
+
+                <div class="pending-status-container">
+                    <p class="pending-no-data"></p>
+                    <div class="approve-status">
+                        <p>คำร้องขอลาออก</p>
+                        <div class="pending-btns">
+                            <button class="edit-btn">แก้ไข</button>
+                            <button class="cancel-btn">ยกเลิก</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reject-tracker">
+                <div class="title">
+                    <i class='bx bx-menu'></i>
+                    <p>ถูกปฏิเสธ / Reject</p>
+                    <i class='bx bxs-circle'></i>
+                </div>
+
+                <div class="reject-status-container">
+                    <p class="reject-no-data"></p>
+                    <div class="reject-status">
+                        <p>คำร้องขอถอนรายวิชา</p>
+                        <button class="reject-btn">ถูกปฏิเสธ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
