@@ -6,7 +6,7 @@ const form = document.getElementById("withdrawForm")
 saveDraft.addEventListener("click" ,async () => {
     const draftForm = {
         status: "รอดำเนินการ",
-        state : "Published",
+        state : "Draft",
         type: "withDraw_course",
         details: {
             date: new Date().toLocaleDateString(),
@@ -61,7 +61,7 @@ saveDraft.addEventListener("click" ,async () => {
       }
 
     sessionStorage.setItem("buttonWithDraw", "true");
-    window.location.href = "Draft.html"
+    // window.location.href = "Draft.html"
 })
 
 submit.addEventListener("click",async ()=>{

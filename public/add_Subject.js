@@ -6,7 +6,7 @@ const form = document.getElementById("add-subject-form")
 saveDraft.addEventListener("click" , async () => {
     const draftForm = {
         status: "รอดำเนินการ",
-        state : "Published",
+        state : "Draft",
         type: "addSubject_course",
         details: {
             date: new Date().toLocaleDateString(),
@@ -55,7 +55,7 @@ saveDraft.addEventListener("click" , async () => {
     
 
     sessionStorage.setItem("buttonAddSubject", "true");
-    window.location.href = "Draft.html"
+    // window.location.href = "Draft.html"
 })
 
 submit.addEventListener("click",async ()=>{

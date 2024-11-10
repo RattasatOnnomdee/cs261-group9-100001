@@ -2,7 +2,8 @@ const draftForm = document.getElementById("draftForm");
 const requestFormId = localStorage.getItem("requestFormId");
 const userId = localStorage.getItem("userId");
 
-function loadAllDrafts() {
+
+async function loadAllDrafts() {
     // Get drafts array from localStorage, or initialize if doesn't exist
     const drafts = JSON.parse(localStorage.getItem("drafts")) || [];
     
