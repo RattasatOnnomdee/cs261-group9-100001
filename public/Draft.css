@@ -86,7 +86,7 @@ body {
     border-radius: 19px;
     background-color: #F0F0F0;
     box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
     margin-top: 3rem;
 }
 .wrapper .text{

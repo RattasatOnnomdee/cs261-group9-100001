@@ -2,6 +2,7 @@ const addSubject = document.getElementById("addSubject")
 const withDraw = document.getElementById("withDraw")
 const resign = document.getElementById("resign")
 const crossProgram = document.getElementById("crossProgram")
+const userId = localStorage.getItem('userId');
 
 addSubject.addEventListener("click" , () => {
     window.location.href = "request_add_subject.html";
@@ -18,3 +19,4 @@ resign.addEventListener("click",() => {
 crossProgram.addEventListener("click",() => {
     window.location.href = "request_cross_program.html";
 })
+
