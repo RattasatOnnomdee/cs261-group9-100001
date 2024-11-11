@@ -3,9 +3,18 @@ const withDraw = document.getElementById("withDraw")
 const resign = document.getElementById("resign")
 const crossProgram = document.getElementById("crossProgram")
 const userId = localStorage.getItem('userId');
+let requestFormId = localStorage.getItem("requestFormId");
+
+const editingExistingDraft = localStorage.getItem("editingExistingDraft") === "true";
+
+if (!editingExistingDraft) {
+    localStorage.removeItem("requestFormId");
+    requestFormId = null;
+}
 
 addSubject.addEventListener("click" , () => {
     window.location.href = "request_add_subject.html";
+    // localStorage.setItem("editingExistingDraft", "true");
 })
 
 withDraw.addEventListener("click",() => {

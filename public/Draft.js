@@ -1,12 +1,13 @@
 const draftForm = document.getElementById("draftForm");
 const requestFormId = localStorage.getItem("requestFormId");
 const userId = localStorage.getItem("userId");
+const time = localStorage.getItem('time')
+const Hour = localStorage.getItem('Hour')
+const Minute = localStorage.getItem('Minute')
 
-
-async function loadAllDrafts() {
-    // Get drafts array from localStorage, or initialize if doesn't exist
+async function loadAllDrafts(adjustKey) {
     const drafts = JSON.parse(localStorage.getItem("drafts")) || [];
-    
+
     if (drafts.length === 0) {
         draftForm.innerHTML = '<p>ไม่พบข้อมูล...</p>';
         return;
@@ -14,6 +15,7 @@ async function loadAllDrafts() {
 
     draftForm.innerHTML = "";
     drafts.forEach((draft, index) => {
+        // Create draft elements as in original code
         const wrapper = document.createElement("div");
         wrapper.classList.add("wrapper");
         wrapper.setAttribute("data-draft-index", index);
@@ -29,57 +31,78 @@ async function loadAllDrafts() {
 
         const date = document.createElement("h1");
         date.classList.add("date");
-        date.innerText = draft.date;
+        date.innerText = draft.date; //`แก้ไข้ครั้งล่าสุดเมื่อ ${time} ${Hour}:${Minute} น.`
         textContainer.appendChild(date);
 
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btnContainer");
         wrapper.appendChild(btnContainer);
 
-        const btn1 = document.createElement("button");
-        btn1.classList.add("btn1");
-        btn1.innerText = "แก้ไข";
-        btnContainer.appendChild(btn1);
+        const editButton = document.createElement("button");
+        editButton.classList.add("btn1");
+        editButton.innerText = "แก้ไข";
+        btnContainer.appendChild(editButton);
 
-        const btn2 = document.createElement("button");
-        btn2.classList.add("btn2");
-        btn2.innerText = "ยกเลิก";
-        btnContainer.appendChild(btn2);
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("btn2");
+        deleteButton.innerText = "ยกเลิก";
+        btnContainer.appendChild(deleteButton);
 
         draftForm.appendChild(wrapper);
 
-        btn2.addEventListener("click", async () => {
-            const drafts = JSON.parse(localStorage.getItem("drafts")) || [];
+        deleteButton.addEventListener("click", async () => {
             drafts.splice(index, 1);
             localStorage.setItem("drafts", JSON.stringify(drafts));
-            
+
             if (draft.requestFormId) {
-                await fetch(`http://localhost:8000/user/${draft.requestFormId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
+                try {
+                    await fetch(`http://localhost:8000/user/${draft.requestFormId}`, {
+                        method: 'DELETE',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                } catch (error) {
+                    console.error('Error deleting draft:', error);
+                    alert('Failed to delete draft.');
+                }
             }
-            
+
             wrapper.remove();
             if (draftForm.children.length === 0) {
                 draftForm.innerHTML = '<p>ไม่พบข้อมูล...</p>';
             }
         });
 
-        btn1.addEventListener("click", async () => {
-            await fetch(`http://localhost:8000/user/draft/${userId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+        editButton.addEventListener("click", async () => {
+            try {
+                const adjustFile = await fetch(`http://localhost:8000/user/draft/${userId}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const file = await adjustFile.json();
+                localStorage.setItem("adjustFile", JSON.stringify(file));
+                localStorage.setItem("currentEditDraftIndex", index);
 
-            // Store the draft index for editing
-            localStorage.setItem("currentEditDraftIndex", index);
-            sessionStorage.setItem(draft.adjustKey, "true");
-            history.back();
+                switch (adjustKey) {
+                    case "adjustCrossProgram":
+                        window.location.href = "request_cross_program.html";
+                        break;
+                    case "adjustResign":
+                        window.location.href = "resignation_form.html";
+                        break;
+                    case "adjustAddSubject":
+                        window.location.href = "request_add_subject.html";
+                        break;
+                    case "adjustWithDraw":
+                        window.location.href = "request_withdraw.html";
+                        break;
+                    default:
+                        console.warn("Unknown adjustKey:", adjustKey);
+                        break;
+                }
+            } catch (error) {
+                console.error('Error fetching adjust file:', error);
+                alert('Failed to load draft for editing.');
+            }
         });
     });
 }
@@ -88,27 +111,31 @@ function createDraft(title, sessionKey, adjustKey) {
     if (sessionStorage.getItem(sessionKey) === "true") {
         sessionStorage.removeItem(sessionKey);
 
-        const dateNow = new Date();
-        const formattedDate = `แก้ไขล่าสุดเมื่อ ${String(dateNow.getDate())}/${String(dateNow.getMonth() + 1)}/${dateNow.getFullYear()} ${String(dateNow.getHours()).padStart(2, '0')}:${String(dateNow.getMinutes()).padStart(2, '0')} น.`;
-
-        const draftContent = {
-            title: title,
-            date: formattedDate,
-            adjustKey: adjustKey,
-            requestFormId: localStorage.getItem("requestFormId")
-        };
-
-        // Get existing drafts or initialize new array
         const drafts = JSON.parse(localStorage.getItem("drafts")) || [];
-        drafts.push(draftContent);
-        localStorage.setItem("drafts", JSON.stringify(drafts));
+        const existingDraftIndex = drafts.findIndex(draft => draft.requestFormId === requestFormId);
 
-        loadAllDrafts();
+        if (existingDraftIndex === -1) {
+            const dateNow = new Date();
+            const formattedDate = `แก้ไขล่าสุดเมื่อ ${String(dateNow.getDate())}/${String(dateNow.getMonth() + 1)}/${dateNow.getFullYear()} ${String(dateNow.getHours()).padStart(2, '0')}:${String(dateNow.getMinutes()).padStart(2, '0')} น.`;
+
+            const draftContent = {
+                title: title,
+                date: formattedDate,
+                adjustKey: adjustKey,
+                requestFormId: requestFormId
+            };
+
+            drafts.push(draftContent);
+        } else {
+            drafts[existingDraftIndex].title = title;
+        }
+
+        localStorage.setItem("drafts", JSON.stringify(drafts));
+        loadAllDrafts(adjustKey);
     }
 }
 
-// Initialize page
-document.addEventListener("DOMContentLoaded", loadAllDrafts);
+// Example usage
 createDraft("แบบร่างเขียนคำร้องจดทะเบียนข้ามโครงการ", "buttonRegisterCross", "adjustCrossProgram");
 createDraft("แบบร่างเขียนคำร้องขอลาออก", "buttonResign", "adjustResign");
 createDraft("แบบร่างเขียนคำร้องจดทะเบียนล่าช้า", "buttonAddSubject", "adjustAddSubject");

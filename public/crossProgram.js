@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancel = document.getElementById("cancel");
     const form = document.getElementById('register-cross-program-form');
 
+    const userId = localStorage.getItem('userId');
+    let requestFormId = localStorage.getItem("requestFormId");
+
     saveDraft.addEventListener("click", async () => {
         const draftForm = {
             status: "รอดำเนินการ",
@@ -29,34 +32,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestReason: document.getElementById('requestReason').value
             }
         };
-        const userId = localStorage.getItem('userId');
+        // const userId = localStorage.getItem('userId');
         const jsonForm = JSON.stringify(draftForm);
         try {
-            if (!userId) {
-                alert('กรุณาล็อกอินก่อน');
-                return;
-            }
-
-            const response = await fetch(`http://localhost:8000/user/${userId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: jsonForm
-            });
-
-            const result = await response.json();
-            const requestFormId = result.requestFormId;
-            localStorage.setItem("requestFormId", result.requestFormId);
+            let response;
             if (requestFormId) {
-                alert('บันทึกแบบร่างสำเร็จ');
+                // PUT to update existing draft
+                response = await fetch(`http://localhost:8000/user/${requestFormId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: jsonForm
+                });
             } else {
-                alert('ไม่สามารถบันทึกแบบร่างได้');
+                // POST to create new draft
+                response = await fetch(`http://localhost:8000/user/${userId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: jsonForm
+                });
             }
+    
+            const result = await response.json();
+            requestFormId = result.requestFormId;
+            localStorage.setItem("requestFormId", requestFormId);
+
+            localStorage.setItem("time",draftForm.details.date)
+            let dateDraft = new Date()
+            localStorage.setItem("Hour",dateDraft.getHours())
+            localStorage.setItem("Minute",dateDraft.getMinutes())
+    
+            alert(requestFormId ? 'บันทึกแบบร่างสำเร็จ' : 'ไม่สามารถบันทึกแบบร่างได้');
         } catch (error) {
             console.error('Error:', error);
             alert('ไม่พบข้อมูลที่กรอกหรือกรอกไม่ครบ');
         }
+    
+        sessionStorage.setItem("buttonResign", "true");
 
         sessionStorage.setItem("buttonRegisterCross", "true");
         // window.location.href = "Draft.html"
