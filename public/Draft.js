@@ -15,7 +15,6 @@ async function loadAllDrafts(adjustKey) {
 
     draftForm.innerHTML = "";
     drafts.forEach((draft, index) => {
-        // Create draft elements as in original code
         const wrapper = document.createElement("div");
         wrapper.classList.add("wrapper");
         wrapper.setAttribute("data-draft-index", index);
@@ -31,7 +30,7 @@ async function loadAllDrafts(adjustKey) {
 
         const date = document.createElement("h1");
         date.classList.add("date");
-        date.innerText = draft.date; //`แก้ไข้ครั้งล่าสุดเมื่อ ${time} ${Hour}:${Minute} น.`
+        date.innerText = draft.date;
         textContainer.appendChild(date);
 
         const btnContainer = document.createElement("div");
@@ -74,34 +73,44 @@ async function loadAllDrafts(adjustKey) {
 
         editButton.addEventListener("click", async () => {
             try {
-                const adjustFile = await fetch(`http://localhost:8000/user/draft/${userId}`, {
+                const adjustFile = await fetch(`http://localhost:8000/user/draft/${draft.requestFormId}`, {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' }
                 });
                 const file = await adjustFile.json();
+                
+                // เก็บข้อมูลที่จำเป็นลง localStorage
                 localStorage.setItem("adjustFile", JSON.stringify(file));
                 localStorage.setItem("currentEditDraftIndex", index);
-
+                localStorage.setItem("requestFormId", draft.requestFormId);
+                
+                // กำหนดการ redirect ตาม type ของฟอร์ม
+                // const formType = file.type; // เช็คประเภทฟอร์มจากข้อมูลที่ได้จาก API
+                let redirectUrl;
+                
                 switch (adjustKey) {
                     case "adjustCrossProgram":
-                        window.location.href = "request_cross_program.html";
+                        redirectUrl = "request_cross_program.html";
                         break;
                     case "adjustResign":
-                        window.location.href = "resignation_form.html";
+                        redirectUrl = "resignation_form.html";
                         break;
                     case "adjustAddSubject":
-                        window.location.href = "request_add_subject.html";
+                        redirectUrl = "request_add_subject.html";
                         break;
                     case "adjustWithDraw":
-                        window.location.href = "request_withdraw.html";
+                        redirectUrl = "request_withdraw.html";
                         break;
                     default:
-                        console.warn("Unknown adjustKey:", adjustKey);
-                        break;
+                        console.warn("Unknown form type:", formType);
+                        alert("ไม่พบประเภทแบบฟอร์มที่ถูกต้อง");
+                        return;
                 }
+                
+                window.location.href = redirectUrl;
             } catch (error) {
                 console.error('Error fetching adjust file:', error);
-                alert('Failed to load draft for editing.');
+                alert('ไม่สามารถโหลดแบบร่างได้');
             }
         });
     });
@@ -127,7 +136,14 @@ function createDraft(title, sessionKey, adjustKey) {
 
             drafts.push(draftContent);
         } else {
-            drafts[existingDraftIndex].title = title;
+            const dateNow = new Date();
+            const formattedDate = `แก้ไขล่าสุดเมื่อ ${String(dateNow.getDate())}/${String(dateNow.getMonth() + 1)}/${dateNow.getFullYear()} ${String(dateNow.getHours()).padStart(2, '0')}:${String(dateNow.getMinutes()).padStart(2, '0')} น.`;
+            
+            drafts[existingDraftIndex] = {
+                ...drafts[existingDraftIndex],
+                title: title,
+                date: formattedDate
+            };
         }
 
         localStorage.setItem("drafts", JSON.stringify(drafts));

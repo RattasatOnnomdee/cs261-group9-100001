@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 parentContactNumber: document.getElementById('parentContactNumber').value,
                 advisor: document.getElementById('advisor').value,
                 sinceSemester: document.getElementById('sinceSemester').value,
-                semesterYear: `${document.getElementById('semesterYear').value}/${document.getElementById('term').value}`,
+                semesterYear: `${document.getElementById('term').value}`,
                 courseId: document.getElementById('courseId').value,
                 courseName: document.getElementById('courseName').value,
                 section: document.getElementById('section').value,
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('ไม่พบข้อมูลที่กรอกหรือกรอกไม่ครบ');
         }
     
-        sessionStorage.setItem("buttonResign", "true");
+        // sessionStorage.setItem("buttonResign", "true");
 
         sessionStorage.setItem("buttonRegisterCross", "true");
         // window.location.href = "Draft.html"

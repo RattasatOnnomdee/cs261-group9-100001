@@ -66,7 +66,7 @@ saveDraft.addEventListener("click" , async () => {
         alert('ไม่พบข้อมูลที่กรอกหรือกรอกไม่ครบ');
     }
 
-    sessionStorage.setItem("buttonResign", "true");
+    // sessionStorage.setItem("buttonResign", "true");
 
     sessionStorage.setItem("buttonAddSubject", "true");
     // window.location.href = "Draft.html"
